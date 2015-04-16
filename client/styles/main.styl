@@ -4,16 +4,20 @@
 
 typographic()
 
+// Rupture breakpoints
+rupture.scale = 0 600px 800px maxSize
+rupture.scale-names = 'small' 'medium' 'desktop' 'hd'
+
 // Fonts for Typographic
 fontSize()
   font-size 11px
-  above
+  above()
     font-size @font-size + 1
-  above
+  above()
     font-size @font-size + 2
-  above
+  above()
     font-size @font-size + 3
-  above
+  above()
     font-size @font-size + 4
 
 // Default transition values
@@ -23,6 +27,6 @@ defaultTransitionValue = .3s ease-out
 @import s(basePath, animate)
 @import s(basePath, links)
 
-body
+article
   center(maxSize)
-  margin 0 1em
+  padding 0 1em

@@ -23,12 +23,12 @@ Template.home.rendered = ->
       .attr 'viewBox', "0 0 #{svgWidth} #{svgHeight}"
   path = svg.append 'g'
     .selectAll 'path'
-  svg.selectAll 'circle'
-    .data vertice
-    .enter()
-    .append 'circle'
-      .attr 'transform', (d) -> "translate(#{d.toString()})"
-      .attr 'r', 1
+  # svg.selectAll 'circle'
+  #   .data vertice
+  #   .enter()
+  #   .append 'circle'
+  #     .attr 'transform', (d) -> "translate(#{d.toString()})"
+  #     .attr 'r', 1
   data = path.data (voronoi vertice)
   data
     .enter()
@@ -41,11 +41,13 @@ Template.home.rendered = ->
     for line in ARR_COL_LINE
       for col in ARR_COL_LINE
         idx = line * NB_COL_LINE + col
-        voronoiData[idx][0] = (line + Math.random()) * sqWidth
-        voronoiData[idx][1] = (col + Math.random()) * sqHeight
+        voronoiData[idx][0] = (line + .1 * Math.random()) * sqWidth
+        voronoiData[idx][1] = (col + .1 * Math.random()) * sqHeight
     svg.selectAll 'path'
       .data (voronoi vertice)
       .transition()
+      .duration 500
+      .delay (d, i) -> i * .3
       .attr 'd', polygon
 
 Template.home.events
