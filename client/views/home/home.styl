@@ -1,0 +1,38 @@
+@import 'client/styles/*.import'
+@import s(basePath, buttonSmall)
+
+// Class to add on SVG when set within any SVG container
+figure
+  display inline-block
+  absolute top left
+  height 100%
+
+// Container for responsive SVG
+// Mixin for creating SVG container with specific aspect ratio
+svgContainer(aspectRatio)
+  display inline-block
+  position relative
+  width 100%
+  vertical-align middle
+  overflow hidden
+  //padding-bottom aspectRatio
+
+article[data-role='home']
+  cpButtonSmall(brandColor)
+  cpButtonSmallBoris(brandColor)
+  // This container targets 1:1 SVG
+  figure
+    margin 0
+    svgContainer(100%)
+    // background blue
+  // .svg-content
+  //   background red
+  svg
+    //background yellow
+    path, line, rect
+      fill brandColor
+      stroke textColor
+      stroke-width .1
+    circle
+      fill bgColor
+      stroke none

@@ -1,30 +1,10 @@
 @import 'jeet'
 @import 'typographic'
+@import 'client/styles/*.import'
 
-// Base path for Creative & Pure
-basePath = '.meteor/local/build/programs/web.browser/packages/pierreeric_creativepure/styles/%s'
-
-// Global variables
-roundCorner =     3px
-buttonSmallSize = 70px
-
-// Main colors
-brandColor =    #268338
-textColor =     darken(brandColor, 70%)
-bgColor =       lighten(brandColor, 90%)
-brandPrimary =  brandColor
-brandDanger =   hsl(0, saturation(brandColor),lightness(brandColor))
-brandWarning =  hsl(45, saturation(brandColor),lightness(brandColor))
-brandSuccess =  hsl(120, saturation(brandColor),lightness(brandColor))
-brandInfo =     hsl(240, saturation(brandColor),lightness(brandColor))
-
-// Breakpoints using Rupture
-maxSize = 960px
-rupture.scale = 0 600px 800px maxSize
-rupture.scale-names = 'small' 'medium' 'desktop' 'hd'
+typographic()
 
 // Fonts for Typographic
-monoFont = optima
 fontSize()
   font-size 11px
   above
@@ -45,3 +25,4 @@ defaultTransitionValue = .3s ease-out
 
 body
   center(maxSize)
+  margin 0 1em
