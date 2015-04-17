@@ -4,28 +4,22 @@
 
 typographic()
 
-// Rupture breakpoints
-rupture.scale = 0 600px 800px maxSize
-rupture.scale-names = 'small' 'medium' 'desktop' 'hd'
-
-// Fonts for Typographic
-fontSize()
-  font-size 11px
-  above()
-    font-size @font-size + 1
-  above()
-    font-size @font-size + 2
-  above()
-    font-size @font-size + 3
-  above()
-    font-size @font-size + 4
-
-// Default transition values
-defaultTransitionValue = .3s ease-out
-
 @import s(basePath, main)
-@import s(basePath, animate)
-@import s(basePath, links)
+// @import s(basePath, animate)
+// @import s(basePath, links)
+
+t-headers(futura)
+
+body, p
+  font-size 10px
+  +above('small')
+    font-size @font-size + 1
+  +above('medium')
+    font-size @font-size + 2
+  +above('desktop')
+    font-size @font-size + 4
+  +above('hd')
+    font-size @font-size + 6
 
 article
   center(maxSize)
