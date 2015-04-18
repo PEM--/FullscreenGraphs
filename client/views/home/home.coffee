@@ -23,7 +23,8 @@ Template.home.rendered = ->
       .attr 'viewBox', "0 0 #{svgWidth} #{svgHeight}"
   path = svg.append 'g'
     .selectAll 'path'
-  svg.selectAll 'circle'
+  svg.append 'g'
+    .selectAll 'circle'
     .data vertice
     .enter()
     .append 'circle'
@@ -58,10 +59,12 @@ Template.home.events
   'click button': (e, t) ->
     $button = t.$ e.target
     role = $button.attr 'data-role'
+    switch role
+      when 'fullscreen'
+        console.log 'Fullscreen'
+      when 'random' then t.updateVoronoi()
     $button.addClass 'clicked'
     $button.on ANIMATION_END_EVENT, ->
       $button
         .off ANIMATION_END_EVENT
         .removeClass 'clicked'
-        console.log 'Role', role
-        t.updateVoronoi()
