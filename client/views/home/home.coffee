@@ -2,7 +2,6 @@ NB_COL_LINE = 10
 ARR_COL_LINE = [0...NB_COL_LINE]
 
 Template.home.rendered = ->
-  console.log 'Home rendered'
   svgWidth = svgHeight = 100
   voronoiData = []
   sqWidth = svgWidth / NB_COL_LINE
@@ -37,7 +36,6 @@ Template.home.rendered = ->
     .attr 'd', polygon
     .order()
   data.exit().remove()
-  # console.log path
   @updateVoronoi = ->
     for line in ARR_COL_LINE
       for col in ARR_COL_LINE
@@ -54,14 +52,25 @@ Template.home.rendered = ->
       .transition()
       .attr 'transform', (d) -> "translate(#{d.toString()})"
       .delay (d, i) -> i * 10
+  @fullscreen = ->
+    return screenfull.exit() if screenfull.isFullscreen
+    target = (@$ '.svg-content')[0]
+    screenfull.request target
+  ($ 'body').on 'keydown', (e) =>
+    switch e.which
+      # Pressing 'f'
+      when 70 then @fullscreen()
+      # Pressing 'r'
+      when 82 then @updateVoronoi()
+
+Template.home.destroyed = -> ($ 'body').off 'keydown'
 
 Template.home.events
   'click button': (e, t) ->
     $button = t.$ e.target
     role = $button.attr 'data-role'
     switch role
-      when 'fullscreen'
-        console.log 'Fullscreen'
+      when 'fullscreen' then t.fullscreen()
       when 'random' then t.updateVoronoi()
     $button.addClass 'clicked'
     $button.on ANIMATION_END_EVENT, ->
