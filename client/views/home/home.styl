@@ -9,21 +9,20 @@ figure
 
 // Container for responsive SVG
 // Mixin for creating SVG container with specific aspect ratio
-svgContainer(aspectRatio)
+svgContainer()
   display inline-block
   position relative
   width 100%
   vertical-align middle
   overflow hidden
-  //padding-bottom aspectRatio
 
 article[data-role='home']
   cpButtonSmall(brandColor)
   cpButtonSmallBoris(brandColor)
-  // This container targets 1:1 SVG
   figure
     margin 0
-    svgContainer(100%)
+    // This container targets 1:1 SVG
+    svgContainer()
     // background blue
   .tip
     bgTip = rgba(lighten(brandColor, 60%), 80%)
@@ -71,9 +70,7 @@ article[data-role='home']
     &:fullscreen
       size 100%
       background bgColor
-    // background red
   svg
-    //background yellow
     background brandColor
     path, line, rect
       fill brandColor
