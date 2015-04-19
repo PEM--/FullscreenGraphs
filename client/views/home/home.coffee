@@ -41,6 +41,13 @@ Template.home.rendered = ->
   @showHideTip = -> tip.toggleClass 'show'
   @showTip = -> Meteor.setTimeout (-> tip.addClass 'show'), 300
   @lazyShowHideTip = _.debounce @showHideTip, 300
+  @setNeighboursClass = (i, cssClass) ->
+    top = $ "path:nth-child(#{i})"
+    bottom = $ "path:nth-child(#{i + 2})"
+    left = $ "path:nth-child(#{i - 9})"
+    right = $ "path:nth-child(#{i + 11})"
+    [top, bottom, left, right].forEach (neighbour) ->
+      neighbour.attr 'class', cssClass
   data
     .enter()
     .append 'path'
@@ -50,7 +57,18 @@ Template.home.rendered = ->
         circle = $ "circle:nth-child(#{i + 1})"
         @positionSetTip circle, i
         @showTip()
-      .on 'mouseleave', => @lazyShowHideTip()
+        path = $ "path:nth-child(#{i + 1})"
+        path.attr 'class', 'selected'
+        @setNeighboursClass i, 'neighbour'
+      .on 'mouseleave', (d, i) =>
+        @lazyShowHideTip()
+        path = $ "path:nth-child(#{i + 1})"
+        path.attr 'class', ''
+        top = $ "path:nth-child(#{i})"
+        bottom = $ "path:nth-child(#{i + 2})"
+        left = $ "path:nth-child(#{i - 9})"
+        right = $ "path:nth-child(#{i + 11})"
+        @setNeighboursClass i, ''
   data.exit().remove()
   @updateVoronoi = ->
     for line in ARR_COL_LINE

@@ -77,9 +77,15 @@ article[data-role='home']
     background brandColor
     path, line, rect
       fill brandColor
-      stroke textColor
+      stroke rgba(textColor, 30%)
       stroke-width .1
     circle
       pointer-events none
       fill bgColor
       stroke none
+    path
+      transition fill .3s ease-in-out
+    path.selected
+      fill lighten(brandColor, 40%)
+    path.neighbour
+      fill lighten(brandColor, 20%)
