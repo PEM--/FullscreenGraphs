@@ -64,10 +64,6 @@ Template.home.rendered = ->
         @lazyShowHideTip()
         path = $ "path:nth-child(#{i + 1})"
         path.attr 'class', ''
-        top = $ "path:nth-child(#{i})"
-        bottom = $ "path:nth-child(#{i + 2})"
-        left = $ "path:nth-child(#{i - 9})"
-        right = $ "path:nth-child(#{i + 11})"
         @setNeighboursClass i, ''
   data.exit().remove()
   @updateVoronoi = ->
