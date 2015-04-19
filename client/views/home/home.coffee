@@ -30,11 +30,27 @@ Template.home.rendered = ->
       .attr 'transform', (d) -> "translate(#{d.toString()})"
       .attr 'r', 1
   data = path.data (voronoi vertice)
+  tip = @$ '.tip'
+  @positionSetTip = (circle, i) ->
+    content = tip.find 'span'
+    content.text "Point #{i}"
+    rect = circle[0].getBoundingClientRect()
+    tip.css 'transform', "translate3d(\
+      #{rect.left + .5 * (rect.width - tip.width())}px,\
+      #{rect.top - tip.height()}px, 0)"
+  @showHideTip = -> tip.toggleClass 'show'
+  @showTip = -> Meteor.setTimeout (-> tip.addClass 'show'), 300
+  @lazyShowHideTip = _.debounce @showHideTip, 300
   data
     .enter()
     .append 'path'
-    .attr 'd', polygon
-    .order()
+      .attr 'd', polygon
+      .order()
+      .on 'mouseover', (d, i) =>
+        circle = $ "circle:nth-child(#{i + 1})"
+        @positionSetTip circle, i
+        @showTip()
+      .on 'mouseleave', => @lazyShowHideTip()
   data.exit().remove()
   @updateVoronoi = ->
     for line in ARR_COL_LINE

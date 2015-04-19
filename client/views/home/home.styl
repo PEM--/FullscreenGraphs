@@ -25,6 +25,48 @@ article[data-role='home']
     margin 0
     svgContainer(100%)
     // background blue
+  .tip
+    bgTip = rgba(lighten(brandColor, 60%), 80%)
+    outlineTip = darken(brandColor, 30%)
+    fixed top left
+    pointer-events none
+    transition transform .3s ease-in-out
+    span
+      border 1px solid outlineTip
+      border-top-left-radius roundCorner
+      border-top-right-radius @border-top-left-radius
+      background bgTip
+      color textColor
+      padding .5em 1em
+      display inline-block
+      transform-origin 50% 100%
+      transform scale3d(1,0,1)
+      transition transform .1s ease-in
+    .arrow
+      transform scale3d(0,1,1)
+      transition transform .1s .2s ease-out
+      border 1px solid outlineTip
+      size 100% 6px
+      background outlineTip
+      relative top left
+      &:before
+        content ''
+        absolute top 100% left 50%
+        border solid transparent
+        size 0
+        pointer-events none
+        border-color transparent
+        border-top-color outlineTip
+        border-width 10px
+        margin-left -(@border-width)
+    &.show
+      span, .arrow
+        transform none
+      span
+        transition transform .1s .2s ease-out
+      .arrow
+        transition transform .2s ease-in
+
   .svg-content
     &:fullscreen
       size 100%
@@ -34,9 +76,10 @@ article[data-role='home']
     //background yellow
     background brandColor
     path, line, rect
-      fill none
+      fill brandColor
       stroke textColor
       stroke-width .1
     circle
+      pointer-events none
       fill bgColor
       stroke none

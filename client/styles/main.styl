@@ -1,6 +1,10 @@
+@import 'nib'
 @import 'jeet'
 @import 'typographic'
 @import 'client/styles/*.import'
+
+normalize-base()
+normalize-html5()
 
 typographic()
 
@@ -10,7 +14,8 @@ typographic()
 
 t-headers(futura)
 
-body, p
+html
+  font-family garamond
   font-size 10px
   +above('small')
     font-size @font-size + 1
