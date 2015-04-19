@@ -1,6 +1,11 @@
 FullscreenGraphs
 ----------------
 
-Testing fullscreen D3 graphs depending on routes.
+Fullscreen D3 graphs example.
 
-Example: http://fullscreengraphs.meteor.com
+![fullscreen](https://raw.githubusercontent.com/PEM--/FullscreenGraphs/master/doc/fullscreen.gif)
+
+## Some links
+* [Demo](http://fullscreengraphs.meteor.com)
+* [Screenfull, an easier API for Javascript Fullscreen API](https://github.com/sindresorhus/screenfull.js/)
+* [Creative & Pure, The CSS framework](http://creativepure.meteor.com/)
